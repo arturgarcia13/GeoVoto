@@ -1,0 +1,58 @@
+# 🛣️ **Roadmap para o Projeto - Mapa Político**
+
+## 🔹 **Mês 1 – Configuração do Ambiente e Coleta de Dados**
+**Objetivo:** Montar a fundação técnica do projeto e levantar os dados.
+
+✅ Tarefas:
+- [ ] Escolher stack tecnológica (GeoServer + OpenLayers ou Python/GeoPandas + Folium)
+- [ ] Instalar e configurar ferramentas:
+  - PostgreSQL + PostGIS
+  - GeoServer (caso use)
+  - OpenLayers ou Leaflet no frontend
+- [ ] Levantar dados eleitorais (fontes como TSE ou dados públicos)
+- [ ] Levantar dados espaciais (shapefiles de municípios, bairros, zonas eleitorais etc.)
+- [ ] Criar repositório GitHub e README
+- [ ] Dividir as responsabilidades da equipe
+
+📝 Entrega: Relatório com descrição das fontes de dados, tecnologias escolhidas, ambiente instalado e tarefas de cada membro.
+
+---
+
+## 🔹 **Mês 2 – Estruturação da Base de Dados**
+**Objetivo:** Criar e popular o banco de dados espacial.
+
+✅ Tarefas:
+- [ ] Modelar o banco (Tabelas: votos, candidatos, zonas, regiões, usuários...)
+- [ ] Criar base espacial com PostGIS
+- [ ] Integrar dados eleitorais com geográficos
+- [ ] Validar os dados (limpeza, padronização)
+- [ ] Criar API básica (se necessário)
+
+📝 Entrega: Diagrama do banco, dumps com os dados inseridos e documentação das tabelas.
+
+---
+
+## 🔹 **Mês 3 – Desenvolvimento do Sistema**
+**Objetivo:** Criar o frontend para visualização dos mapas.
+
+✅ Tarefas:
+- [ ] Criar visualização interativa dos dados no mapa
+- [ ] Implementar filtros (ex: por candidato, zona, ano)
+- [ ] Conectar frontend ao banco de dados (via GeoServer ou API)
+- [ ] Adicionar painéis ou gráficos (com bibliotecas como Chart.js ou D3.js)
+
+📝 Entrega: Versão funcional do aplicativo com pelo menos uma visualização geográfica interativa.
+
+---
+
+## 🔹 **Mês 4 – Testes, Validação e Entrega**
+**Objetivo:** Refinar e documentar o sistema.
+
+✅ Tarefas:
+- [ ] Testar todas as funcionalidades
+- [ ] Corrigir bugs e otimizar queries
+- [ ] Criar manual de uso e vídeo de apresentação
+- [ ] Redigir o relatório final com as fases descritas
+- [ ] Fazer deploy (local ou servidor acadêmico)
+
+📝 Entrega: Sistema testado e documentado, com relatório final e apresentação.
