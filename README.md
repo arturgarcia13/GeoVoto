@@ -68,13 +68,16 @@ Não se aplica (projeto acadêmico).
 ## 📁 Estrutura de Pastas
 
 ```
-📦 mapa-politico/
- ┣ 📂 data/            → Dados brutos (eleitorais e espaciais)
- ┣ 📂 docs/            → Documentações e relatórios mensais
- ┣ 📂 app/             → Código do sistema (frontend/backend)
- ┣ 📂 notebooks/       → Processamento de dados em Python (GeoPandas)
- ┣ 📜 README.md        → Este arquivo
- ┗ 📜 requirements.txt → Dependências (se usar Python)
+mapa-politico/
+┣ 📂 data/
+┃  ┣ 📂 raw/          ← Dados originais baixados
+┃  ┗ 📂 processed/    ← Dados limpos e unidos
+┣ 📂 notebooks/       ← Jupyter notebooks de exploração
+┣ 📂 scripts/         ← Scripts Python (ETL, carga, etc)
+┣ 📂 app/             ← Código futuro do Dash
+┣ 📂 docs/            ← Relatórios mensais
+┣ 📜 .gitignore
+┗ 📜 requirements.txt
 ```
 
 ---
