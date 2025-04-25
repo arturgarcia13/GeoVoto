@@ -23,7 +23,7 @@
 **Objetivo:** Criar o banco de dados e cruzar dados eleitorais com geoespaciais.
 
 ✅ Tarefas:
-- [ ] Criar banco de dados com **PostgreSQL + PostGIS**
+- [ ] Criar banco de dados com **PostgreSQL + PostGIS** (ou aguardar para criar em conjunto com a aplicação final)
 - [ ] Usar `GeoPandas` para tratar e unir dados eleitorais e espaciais
 - [ ] Criar scripts de ETL (Extração, Transformação e Carga)
 - [ ] Criar uma API REST simples com Flask para servir os dados (opcional)
