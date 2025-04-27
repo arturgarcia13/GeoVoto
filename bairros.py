@@ -3,7 +3,7 @@ import os
 import pandas
 from IPython.display import display
 from pathlib import Path
-import gdown
+#import gdown
 import geopandas as gpd
 import pydeck as pdk
 
@@ -27,26 +27,24 @@ df_plot = gdf_bairros[["coordinates"]].copy()
 
 st.pydeck_chart(
     pdk.Deck(
-        initial_view_state = 
-            pdk.ViewState(
+         map_style="mapbox://styles/mapbox/light-v9",
+         initial_view_state =pdk.ViewState(
                 latitude=gdf_bairros.geometry.centroid.y.mean(),  # Centro aproximado
                 longitude=gdf_bairros.geometry.centroid.x.mean(),
                 zoom=11,
                 pitch=0
-                ),
-        map_style="mapbox://styles/mapbox/light-v9"
-    ),
-        layers = 
-            [pdk.Layer(
+            ),
+        layers =[
+            pdk.Layer(
                 "Poligonos",
-                df_plot,
+                data=df_plot,
                 get_polygon = "coordinates",
                 get_fill_color="[71, 176, 250, 60]",
                 get_line_color="[90, 150, 186]",
                 pickable = True,
                 strocked = True,
                 extruded = False,
-                )],
+            ),
+        ],
+    ),
 )
-
-
