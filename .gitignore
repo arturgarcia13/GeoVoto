@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Ambiente virtual
+.venv/
+
+# Dados grandes
+# data/*.shp
+# data/*.dbf
+# data/*.prj
+# data/*.shx

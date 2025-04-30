@@ -74,7 +74,7 @@ mapa-politico/
 ┃  ┗ 📂 processed/    ← Dados limpos e unidos
 ┣ 📂 notebooks/       ← Jupyter notebooks de exploração
 ┣ 📂 scripts/         ← Scripts Python (ETL, carga, etc)
-┣ 📂 app/             ← Código futuro do Dash
+┣ 📂 app/             ← Código futuro da aplicação
 ┣ 📂 docs/            ← Relatórios mensais
 ┣ 📜 .gitignore
 ┗ 📜 requirements.txt
@@ -84,11 +84,11 @@ mapa-politico/
 
 ## 👥 Equipe
 
-- [Nome da Pessoa 1] – Coleta de dados eleitorais
-- [Nome da Pessoa 2] – Base espacial
-- [Nome da Pessoa 3] – Banco de dados
-- [Nome da Pessoa 4] – Desenvolvimento do sistema
-- [Nome da Pessoa 5] – Relatórios e documentação
+- Artur Garcia
+- Artur Saraiva
+- Letícia Frota
+- Lucas Lopes
+- Iuri Sales
 
 ---
 
