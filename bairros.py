@@ -8,7 +8,7 @@ import geopandas as gpd
 import pydeck as pdk
 import time
 
-caminho_shp = "/workspaces/GeoVoto/bairros_fortaleza/vw_Fortaleza_Bairros.shp"
+caminho_shp = "bairros_fortaleza/vw_Fortaleza_Bairros.shp"
 gdf_bairros = gpd.read_file(caminho_shp)
 
 col1,col2 = st.columns([9,2])
@@ -23,7 +23,6 @@ with col2:
 
 tab1 = st.tabs(["🌎 Mapa dos bairros"])
 
-
 st.title("Mapa dos Bairros de Fortaleza")
 
 if gdf_bairros.crs.to_epsg() != 4326:
@@ -31,12 +30,36 @@ if gdf_bairros.crs.to_epsg() != 4326:
     gdf_bairros = gdf_bairros.to_crs(epsg=4326)
     st.write(f"CRS convertido para: {gdf_bairros.crs}")
 
-
 # Criar uma nova coluna com as coordenadas das bordas
 gdf_bairros["coordinates"] = gdf_bairros["geometry"].apply(lambda x: list(x.exterior.coords))
 
 # Transformar para dataframe puro para o pydeck
 df_plot = gdf_bairros[["coordinates", "Nome", "Área (ha)"]].copy()
+
+# 🔲 Toggles (box) Camadas
+st.subheader("Camadas do Mapa")
+col_base, col_poligono = st.columns(2)
+with col_base:
+    mostrar_base = st.toggle("Mostrar mapa base", value=True)
+with col_poligono:
+    mostrar_poligono = st.toggle("Mostrar bairros (camadas)", value=True)
+
+# Camadas
+camadas = []
+if mostrar_poligono:
+    camada_bairros = pdk.Layer(
+        "PolygonLayer",
+        data=df_plot,
+        get_polygon="coordinates",
+        get_fill_color=[71, 176, 250, 60],
+        get_line_color=[0, 0, 250],
+        get_line_width=2,
+        line_width_min_pixels=1,
+        pickable=True,
+        stroked=True,
+        extruded=False,
+    )
+    camadas.append(camada_bairros)
 
 #Calculo dos centroides para correção do mapa (apagar no proximo commit)
 #gdf_temp = gdf_bairros.to_crs(epsg=3857)
@@ -47,27 +70,14 @@ df_plot = gdf_bairros[["coordinates", "Nome", "Área (ha)"]].copy()
 
 st.pydeck_chart(
     pdk.Deck(
-         map_style="mapbox://styles/mapbox/light-v9",
-         initial_view_state =pdk.ViewState(
-                latitude= -3.79,  # Centro aproximado
-                longitude= -38.526,
-                zoom=10.6,
-                pitch=0
-            ),
-        layers =[
-            pdk.Layer(
-                "PolygonLayer",
-                data=df_plot,
-                get_polygon = "coordinates",
-                get_fill_color=[71, 176, 250, 60],
-                get_line_color=[0, 0, 250],
-                get_line_width=2,
-                line_width_min_pixels=1,
-                pickable = True,
-                stroked = True,
-                extruded = False,
-            ),
-        ],
+        map_style="mapbox://styles/mapbox/light-v9" if mostrar_base else None,
+        initial_view_state=pdk.ViewState(
+            latitude= -3.79,
+            longitude= -38.526,
+            zoom=10.6,
+            pitch=0
+        ),
+        layers=camadas,
         tooltip={
             "html": "<b>Bairro:</b> {Nome} <br/> <b>Área (ha):</b> {Área (ha)}",
             "style": {
