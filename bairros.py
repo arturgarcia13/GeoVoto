@@ -36,7 +36,7 @@ gdf_bairros["coordinates"] = gdf_bairros["geometry"].apply(lambda x: list(x.exte
 # Transformar para dataframe puro para o pydeck
 df_plot = gdf_bairros[["coordinates", "Nome", "Área (ha)"]].copy()
 
-# 🔲 Toggles (box) Camadas
+# Toggles (box) Camadas
 st.subheader("Camadas do Mapa")
 col_base, col_poligono = st.columns(2)
 with col_base:
