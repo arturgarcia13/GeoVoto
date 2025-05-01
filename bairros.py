@@ -33,8 +33,23 @@ if gdf_bairros.crs.to_epsg() != 4326:
 # Criar uma nova coluna com as coordenadas das bordas
 gdf_bairros["coordinates"] = gdf_bairros["geometry"].apply(lambda x: list(x.exterior.coords))
 
+# filtro (dropdown) de bairros
+bairros = sorted(gdf_bairros["Nome"].unique())
+
+selecao = st.selectbox(
+    "Selecione um bairro",
+    ["Todos"] + bairros
+)
+
+if selecao != "Todos":
+    gdf_filtrado = gdf_bairros[gdf_bairros["Nome"] == selecao]
+else:
+    gdf_filtrado = gdf_bairros.copy()
+
+gdf_filtrado["coordinates"] = gdf_filtrado["geometry"].apply(lambda x: list(x.exterior.coords))
+
 # Transformar para dataframe puro para o pydeck
-df_plot = gdf_bairros[["coordinates", "Nome", "Área (ha)"]].copy()
+df_plot = gdf_filtrado[["coordinates", "Nome", "Área (ha)"]].copy()
 
 # Toggles (box) Camadas
 st.subheader("Camadas do Mapa")
@@ -67,6 +82,7 @@ if mostrar_poligono:
 #centroids = centroids.to_crs(epsg=4326)
 #st.write(f"lat média: {centroids.geometry.centroid.y.mean()}")
 #st.write(f"lon média: {centroids.geometry.centroid.x.mean()}")
+
 
 st.pydeck_chart(
     pdk.Deck(
