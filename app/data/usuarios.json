@@ -9,6 +9,12 @@
     "nome": "Maria Frota",
     "email": "leticia@ufc.com",
     "tipo": "user",
-    "token": null
+    "token": "ea9295b8-e709-4031-ac8e-6fb5b9e8348b"
+  },
+  {
+    "nome": "Leticia",
+    "email": "leticiafrotamesquita@gmail.com",
+    "tipo": "user",
+    "token": "9656c0d5-bd87-4b22-adb8-7cfc0c6d0989"
   }
 ]
