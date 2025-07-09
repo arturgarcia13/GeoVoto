@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "Lucas Lopes",
+    "email": "lucas@ufc.com",
+    "tipo": "admin",
+    "token": null
+  },
+  {
+    "nome": "Maria Frota",
+    "email": "leticia@ufc.com",
+    "tipo": "user",
+    "token": null
+  }
+]
