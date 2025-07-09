@@ -2,6 +2,8 @@
 
 from sqlalchemy import text
 from app.database.connection import get_engine
+from pathlib import Path
+
 
 def get_user_by_email(email):
     engine = get_engine()
@@ -23,3 +25,8 @@ def validate_token(token):
     with engine.connect() as conn:
         result = conn.execute(query, {"token": token}).mappings().fetchone()
     return result
+
+def read_sql_file(filename):
+    path = Path("app/sql") / filename
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()

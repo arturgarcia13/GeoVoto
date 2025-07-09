@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from utils.carga_dados import carregar_bairros_fortaleza
+from app.data.carga_dados import carregar_bairros_fortaleza
 
 def preparar_dados_mapa_bairro():
     gdf_bairros = carregar_bairros_fortaleza()

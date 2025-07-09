@@ -1,13 +1,10 @@
 import streamlit as st
-import os
-import pandas
-import geopandas as gpd
 import pydeck as pdk
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from utils.preparar_dados_mapa_bairro import preparar_dados_mapa_bairro
-from utils.convert_colors import hex_to_rgb
+from app.data.preparadores.preparar_dados_mapa_bairro import preparar_dados_mapa_bairro
+from app.ui.convert_colors import hex_to_rgb
 
 
 df_plot = preparar_dados_mapa_bairro()

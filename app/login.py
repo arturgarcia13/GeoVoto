@@ -5,15 +5,14 @@ import uuid
 from app.database.json_user_store import get_user_by_email, update_user_token, validate_token
 
 def login_screen():
-    st.title("Login via Magic Link (simulado)")
+    st.title("Login via Magic Link")
 
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
         st.session_state.user_type = None
         st.session_state.user_email = None
 
-    query_params = st.experimental_get_query_params()
-    token = query_params.get("token", [None])[0]
+    token = st.query_params.get("token", [None])[0]
 
     if token:
         user = validate_token(token)
@@ -33,8 +32,8 @@ def login_screen():
         if user:
             token = str(uuid.uuid4())
             update_user_token(email, token)
-            magic_link = f"{st.get_url()}?token={token}"
-            st.success("Link gerado com sucesso! (simulação)")
+            magic_link = f"/?token={token}"
+            st.success("Link gerado com sucesso!")
             st.markdown(f"[Clique aqui para logar]({magic_link})")
         else:
             st.error("Usuário não encontrado")

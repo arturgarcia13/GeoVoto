@@ -1,8 +1,8 @@
 import streamlit as st
-from utils.ui import configurar_interface
-from app.login import login_screen
-from dashboard.db_connection import get_engine
+from ui.interface import configurar_interface
+from login import login_screen
 from dashboard.dashboard_view import build_dashboard
+from database.connection import get_engine
 
 # Conexão com o banco
 engine = get_engine()
