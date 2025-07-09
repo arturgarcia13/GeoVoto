@@ -2,16 +2,16 @@
 
 import streamlit as st
 from .data_loader import load_data
-from components.kpis import show_kpis
-from components.charts import grafico_top_candidatos, grafico_partidos
-from components.filters import aplicar_filtros
+from components.charts import *
+from components.filters import filtrar_por_candidato
 
 
 def build_dashboard(engine):
     """Constrói e exibe o dashboard principal."""
-    df = load_data(engine)
+    dataframes = st.session_state.get("Arquivos Carregados", load_data(engine))
 
-    st.sidebar.success(f"Logado como: {st.session_state.email}")
+
+    st.sidebar.success(f"Logado como: Artur") #{st.session_state.email}
     if st.sidebar.button("Logout"):
         for key in list(st.session_state.keys()):
             del st.session_state[key]
@@ -20,24 +20,41 @@ def build_dashboard(engine):
     st.title("📊 Dashboard de Análise Eleitoral")
     st.markdown("Use os filtros na barra lateral para explorar os resultados.")
 
-    if not df.empty:
-        df_filtrado = aplicar_filtros(df)
+    if len(dataframes) != 0:
+        # Selecionar candidato
+        lista_candidatos = dataframes['candidato'][['Num_Candidato', 'Nome_Urna']].drop_duplicates()
+        nome = st.sidebar.selectbox("Selecione o candidato", lista_candidatos['Nome_Urna'])
+        num_candidato = lista_candidatos[lista_candidatos['Nome_Urna'] == nome]['Num_Candidato'].values[0]
 
-        if df_filtrado.empty:
+        # Filtrar dados por candidato selecionado
+        dados_candidato = st.session_state.get(
+            "Filtro Carregado",
+            filtrar_por_candidato(dataframes, num_candidato)
+        )
+
+        if len(dados_candidato) == 0:
             st.warning("Nenhum dado encontrado para os filtros selecionados.")
         else:
-            show_kpis(df_filtrado)
+            st.header("📊 Desempenho do Candidato")
+            grafico_votos_por_municipio(dados_candidato['votacao_candidato_municipio_zona'], dataframes['municipio'])
+
+            st.header("🤝 Apoio Político")
+            grafico_apoio_prefeito(dados_candidato['votacao_candidato_municipio_zona'], dados_candidato['apoio_prefeito_candidato'])
+
+            # st.header("👥 Perfil do Eleitorado")
+            # grafico_faixa_etaria(dataframes['perfil_eleitorado'])
+
+            st.header("🏛️ Votos por Partido")
+            grafico_votos_partido(dataframes['votos_partido_municipio'])
+
+            st.header("📈 Comparecimento")
+            grafico_comparecimento(dataframes['manifestacao_eleitorado_municipio'], dataframes['municipio'])
+
             st.markdown("---")
-
-            col_graf1, col_graf2 = st.columns(2)
-            with col_graf1:
-                grafico_top_candidatos(df_filtrado)
-            with col_graf2:
-                grafico_partidos(df_filtrado)
-
-            st.markdown("---")
-
             with st.expander("Ver dados detalhados da seleção"):
-                st.dataframe(df_filtrado, use_container_width=True)
+                for nome_tabela, df in dados_candidato.items():
+                    st.subheader(f"Tabela: {nome_tabela}")
+                    st.dataframe(df, use_container_width=True)
+
     else:
         st.error("Não foi possível carregar os dados. Verifique a conexão e a query.")

@@ -4,7 +4,7 @@ import streamlit as st
 import uuid
 import smtplib
 from email.message import EmailMessage
-from app.database.json_user_store import (
+from database.json_user_store import (
     get_user_by_email,
     update_user_token,
     validate_token,
@@ -14,7 +14,7 @@ from streamlit_extras.switch_page_button import switch_page
 
 def enviar_link_por_email(remetente_email, remetente_nome, senha_app, destinatario, token):
     link = f"http://localhost:8501/?token={token}"
-
+    
     msg = EmailMessage()
     msg["Subject"] = "Seu link mágico de acesso"
     msg["From"] = f"{remetente_nome} <{remetente_email}>"
@@ -44,7 +44,7 @@ def login_screen():
 
     # Verifica se existe token na URL
     query_params = st.query_params
-    token = query_params["token"][0] if "token" in query_params else None
+    token = query_params["token"] if "token" in query_params else None
 
     if token:
         if not token or len(token) < 20:
@@ -64,9 +64,9 @@ def login_screen():
     st.subheader("📧 Enviar link mágico para um usuário")
 
     # Dados do remetente
-    remetente_nome = st.text_input("Seu nome (remetente)")
-    remetente_email = st.text_input("Seu e-mail (remetente)")
-    remetente_senha = st.text_input("Senha do e-mail (remetente)", type="password")
+    remetente_nome = "Administracao GeoVoto"
+    remetente_email = "leticiafrotamesquita@gmail.com"
+    remetente_senha = "tqrq qslz piko zhyu"
 
     # E-mail do usuário que vai receber o link
     email = st.text_input("E-mail do usuário para login")
@@ -87,5 +87,3 @@ def login_screen():
                 st.error("❌ Não foi possível enviar o e-mail.")
         else:
             st.error("Usuário não encontrado.")
-
-            

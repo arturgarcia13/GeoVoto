@@ -1,18 +1,10 @@
 import streamlit as st
 
-def aplicar_filtros(df):
-    st.sidebar.header("Filtros")
-
-    municipios = sorted(df['nome_municipio'].unique())
-    municipio_selecionado = st.sidebar.selectbox("Município", ["Todos os Municípios"] + municipios)
-
-    partidos = sorted(df['sigla_partido'].unique())
-    partido_selecionado = st.sidebar.selectbox("Partido", ["Todos os Partidos"] + partidos)
-
-    df_filtrado = df.copy()
-    if municipio_selecionado != "Todos os Municípios":
-        df_filtrado = df_filtrado[df_filtrado['nome_municipio'] == municipio_selecionado]
-    if partido_selecionado != "Todos os Partidos":
-        df_filtrado = df_filtrado[df_filtrado['sigla_partido'] == partido_selecionado]
-
-    return df_filtrado
+def filtrar_por_candidato(dados, num_candidato):
+    dados_filtrados = {}
+    for chave, df in dados.items():
+        if 'FK_Num_Candidato' in df.columns:
+            dados_filtrados[chave] = df[df['FK_Num_Candidato'] == num_candidato]
+        else:
+            dados_filtrados[chave] = df
+    return dados_filtrados

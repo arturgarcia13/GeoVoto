@@ -16,5 +16,11 @@
     "email": "leticiafrotamesquita@gmail.com",
     "tipo": "user",
     "token": "9656c0d5-bd87-4b22-adb8-7cfc0c6d0989"
+  },
+  {
+    "nome": "Artur",
+    "email": "arturgarcia046@gmail.com",
+    "tipo": "admin",
+    "token": "8f03ad60-8e1f-4311-8aaf-26395bb958a6"
   }
 ]
