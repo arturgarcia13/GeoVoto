@@ -20,6 +20,8 @@ def update_user_token(email, token):
         json.dump(users, f, indent=2)
 
 def validate_token(token):
+    print(f"[DEBUG] Token recebido para validação: {token}")
     with open(USERS_PATH, "r", encoding="utf-8") as f:
         users = json.load(f)
-    return next((u for u in users if u.get("token") == token), None)
+        for u in users:
+            print(f"[DEBUG] Usuário {u['email']} → token: {u.get('token')}")

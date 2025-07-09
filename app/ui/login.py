@@ -5,6 +5,9 @@ import uuid
 from app.database.json_user_store import get_user_by_email, update_user_token, validate_token
 
 def login_screen():
+    with open("app/data/usuarios.json", "r", encoding="utf-8") as f:
+        st.code(f.read(), language="json")
+
     st.title("Login via Magic Link")
 
     if "logged_in" not in st.session_state:
@@ -12,9 +15,15 @@ def login_screen():
         st.session_state.user_type = None
         st.session_state.user_email = None
 
-    token = st.query_params.get("token", [None])[0]
+    query_params = st.query_params
+    token = query_params["token"][0] if "token" in query_params else None
+    st.write(f"[DEBUG] Token da URL (forçado): {token}")
+
 
     if token:
+        if not token or len(token) < 20:
+            st.error("Token ausente ou malformado.")
+            return
         user = validate_token(token)
         if user:
             st.session_state.logged_in = True
@@ -32,7 +41,7 @@ def login_screen():
         if user:
             token = str(uuid.uuid4())
             update_user_token(email, token)
-            magic_link = f"/?token={token}"
+            magic_link = f"{st.request.host_url}?token={token}"
             st.success("Link gerado com sucesso!")
             st.markdown(f"[Clique aqui para logar]({magic_link})")
         else:

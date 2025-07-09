@@ -1,6 +1,6 @@
 import streamlit as st
 from ui.interface import configurar_interface
-from login import login_screen
+from app.ui.login import login_screen
 from dashboard.dashboard_view import build_dashboard
 from database.connection import get_engine
 
