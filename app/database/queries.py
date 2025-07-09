@@ -1,7 +1,7 @@
 # app/database/queries.py
 
 from sqlalchemy import text
-from app.database.connection import get_engine
+from database.connection import get_engine
 from pathlib import Path
 
 

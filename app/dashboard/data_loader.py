@@ -3,7 +3,7 @@
 import pandas as pd
 import streamlit as st
 from sqlalchemy import text
-from app.database.queries import read_sql_file
+from database.queries import read_sql_file
 
 
 @st.cache_data(ttl=600)

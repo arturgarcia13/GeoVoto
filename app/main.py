@@ -1,6 +1,6 @@
 import streamlit as st
 from ui.interface import configurar_interface
-from app.ui.login import login_screen
+from ui.login import login_screen
 from dashboard.dashboard_view import build_dashboard
 from database.connection import get_engine
 
@@ -8,7 +8,13 @@ from database.connection import get_engine
 engine = get_engine()
 
 # Configurações de layout, título, etc.
-configurar_interface()
+# configurar_interface()
+def configurar_interface():
+    st.set_page_config(
+        page_title="Dashboard de Análise Eleitoral",
+        page_icon="📊",
+        layout="wide"
+    )
 
 # --- Controle de fluxo do app ---
 if st.session_state.get("logged_in", False):

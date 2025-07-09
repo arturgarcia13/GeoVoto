@@ -2,9 +2,9 @@
 
 import streamlit as st
 from .data_loader import load_data
-from app.components.kpis import show_kpis
-from app.components.charts import grafico_top_candidatos, grafico_partidos
-from app.components.filters import aplicar_filtros
+from components.kpis import show_kpis
+from components.charts import grafico_top_candidatos, grafico_partidos
+from components.filters import aplicar_filtros
 
 
 def build_dashboard(engine):

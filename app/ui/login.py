@@ -2,7 +2,7 @@
 
 import streamlit as st
 import uuid
-from app.database.json_user_store import get_user_by_email, update_user_token, validate_token
+from database.json_user_store import get_user_by_email, update_user_token, validate_token
 
 def login_screen():
 #    with open("app/data/usuarios.json", "r", encoding="utf-8") as f:
