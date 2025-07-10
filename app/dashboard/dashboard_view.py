@@ -5,21 +5,14 @@ from .data_loader import load_data
 from components.charts import *
 from components.filters import filtrar_por_candidato
 
-
 def build_dashboard(engine):
     """Constrói e exibe o dashboard principal."""
     dataframes = st.session_state.get("Arquivos Carregados", load_data(engine))
-
-
-    st.sidebar.success(f"Logado como: Artur") #{st.session_state.email}
-    if st.sidebar.button("Logout"):
-        for key in list(st.session_state.keys()):
-            del st.session_state[key]
-        st.rerun()
-
-    st.title("📊 Dashboard de Análise Eleitoral")
-    st.markdown("Use os filtros na barra lateral para explorar os resultados.")
-
+    
+    if not dataframes or not isinstance(dataframes, dict):
+        st.error("Erro ao carregar os dados.")
+        return
+    
     if len(dataframes) != 0:
         # Selecionar candidato
         lista_candidatos = dataframes['candidato'][['Num_Candidato', 'Nome_Urna']].drop_duplicates()
