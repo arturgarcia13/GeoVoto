@@ -2,7 +2,6 @@ import streamlit as st
 import uuid
 import smtplib
 from email.message import EmailMessage
-from streamlit_extras.switch_page_button import switch_page
 from database.queries import get_user_by_email, update_user_token, validate_token
 
 
@@ -27,37 +26,31 @@ def enviar_link_por_email(remetente_email, remetente_nome, senha_app, destinatar
         st.error(f"Erro ao enviar e-mail: {e}")
         return False
 
-
-def login_scam(token: str) -> bool:
-    if token:
-        if not token or len(token) < 20:
-            st.error("Token ausente ou malformado.")
-            return False
-        user = validate_token(token)
-        print(user)
-        if user:
-            st.session_state["logged_in"] = True
-            st.session_state["user_type"] = user["tipo"]
-            st.session_state["user_email"] = user["email"]
-            st.session_state["nome"] = user["nome"]
-            st.success(f"✅ Bem-vindo, {user['nome']}")
-            st.rerun()
-            return True
-        else:
-            st.error("Token inválido ou expirado.")
-            return False
-    return False
-
+def login_scan(token: str) -> bool:
+    if len(token) < 20:
+        st.error("Token malformado.")
+        return False
+    user = validate_token(token)
+    if user:
+        st.session_state["logged_in"] = True
+        st.session_state["user_type"] = user["tipo"]
+        st.session_state["user_email"] = user["email"]
+        st.session_state["nome"] = user["nome"]
+        st.success(f"✅ Bem-vindo, {user['nome']}")
+        st.rerun()
+        return True
+    else:
+        return False
 
 def login_screen():
-    st.title("🔐 Login GeoVoto")
 
+    st.title("Login na Plataforma GeoVoto")
     # Inicializa estados
     for key in ["logged_in", "user_type", "user_email"]:
         if key not in st.session_state:
             st.session_state[key] = None if key != "logged_in" else False
 
-    st.subheader("📧 Enviar link mágico de autenticação")
+    st.subheader("Enviar link de autenticação")
 
     email = st.text_input("E-mail do usuário para login")
 
