@@ -25,6 +25,6 @@ def load_data(_engine):
                 # print(f"\nTabela carregada como DataFrame: {tabela}")       
             return dfs
     except Exception as e:
-        st.error(f"Erro ao carregar os dados do dashboard: {e}")
+        st.error(f"Erro ao carregar os dados do dashboard")
         return pd.DataFrame()
 

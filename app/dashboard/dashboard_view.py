@@ -9,7 +9,7 @@ def build_dashboard(engine):
     """Constrói e exibe o dashboard principal."""
     dataframes = st.session_state.get("Arquivos Carregados", load_data(engine))
     
-    if not dataframes or not isinstance(dataframes, dict):
+    if not isinstance(dataframes, dict):
         st.error("Erro ao carregar os dados.")
         return
     if len(dataframes) == 0:
@@ -32,7 +32,6 @@ def build_dashboard(engine):
         return
     
     with st.container():
-        st.set_page_config(layout='wide')
         # Layout em colunas
         st.metric("Total de Municípios", dados_candidato['votacao_candidato_municipio_zona']['FK_Cod_Municipio'].nunique())
         
