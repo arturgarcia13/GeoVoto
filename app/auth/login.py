@@ -34,15 +34,16 @@ def login_screen():
         if not email:
             st.warning("Digite um e-mail válido.")
             return
+        
+        with st.spinner("Buscando usuário..."):
+            user = get_user_by_email(email)
+            if not user:
+                st.error("Usuário não encontrado.")
+                return
 
-        user = get_user_by_email(email)
-        st.write(user)
-        if not user:
-            st.error("Usuário não encontrado.")
-            return
-
-        token = str(uuid.uuid4())
-        update_user_token(email, token)
+        with st.spinner("Criando Token..."):
+            token = str(uuid.uuid4())
+            update_user_token(email, token)
 
         success_login(token)
 

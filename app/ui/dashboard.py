@@ -8,5 +8,5 @@ def page_dashboard():
     engine = get_engine()
     
     st.title("Dashboard de Análise Eleitoral")
-
+    
     build_dashboard(engine)

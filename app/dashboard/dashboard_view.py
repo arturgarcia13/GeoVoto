@@ -7,7 +7,11 @@ from components.filters import filtrar_por_candidato
 
 def build_dashboard(engine):
     """Constrói e exibe o dashboard principal."""
-    dataframes = st.session_state.get("Arquivos Carregados", load_data(engine))
+    with st.spinner("Carregando dados..."):
+        if "Arquivos Carregados" not in st.session_state:
+            st.session_state["Arquivos Carregados"] = load_data(engine)
+
+        dataframes = st.session_state["Arquivos Carregados"]
     
     if not isinstance(dataframes, dict):
         st.error("Erro ao carregar os dados.")
