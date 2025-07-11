@@ -13,8 +13,7 @@ def get_user_by_email(email: str) -> Optional[Dict]:
             result = conn.execute(query, {"email": email}).mappings().fetchone()
         return result
     except Exception as e:
-        print(f"Erro ao buscar usuário por e-mail: {e}")
-        return None
+        return f"Erro ao buscar usuário por e-mail: {e}"
 
 def update_user_token(email: str, token: str) -> None:
     engine = get_engine()
