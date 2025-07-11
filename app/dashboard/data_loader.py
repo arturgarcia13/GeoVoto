@@ -15,6 +15,7 @@ def load_data(_engine):
             insp = inspect(_engine)
             # Pega todos os nomes de tabelas
             tabelas = insp.get_table_names()
+            # st.write("Tabelas detectadas:", tabelas)
             dfs = {}
             # Loop para criar DataFrames com nomes iguais ao das tabelas
             for tabela in tabelas:
@@ -26,5 +27,5 @@ def load_data(_engine):
             return dfs
     except Exception as e:
         st.error(f"Erro ao carregar os dados do dashboard")
-        return pd.DataFrame()
-
+        st.error(str(e))  # Isso ajuda a ver o erro real
+        return {}  # <- importante: tem que retornar dict vazio!

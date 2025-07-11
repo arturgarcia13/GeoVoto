@@ -41,6 +41,8 @@ def login_screen():
             if not user:
                 st.error("Usuário não encontrado.")
                 return
+            
+            st.session_state["user_type"] = user["tipo"]
 
         with st.spinner("Criando Token..."):
             token = str(uuid.uuid4())
