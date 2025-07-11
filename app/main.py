@@ -3,10 +3,15 @@ import streamlit as st
 from ui.dashboard import page_dashboard
 from ui.login_page import page_login
 from ui.app_page import page_app
-import streamlit.components.v1 as components
+from config.settings import AppConfig
 
 # Configuração da página
-st.set_page_config(page_title="GeoVoto", page_icon="🗳️", initial_sidebar_state="collapsed", layout= "wide")
+st.set_page_config(
+    page_title=AppConfig.app_name, 
+    page_icon=AppConfig.app_icon, 
+    initial_sidebar_state=AppConfig.initial_sidebar_state, 
+    layout= AppConfig.page_layout
+    )
 
 # Inicializa estado de login se necessário
 def initialize_session_state():

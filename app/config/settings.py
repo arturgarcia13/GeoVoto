@@ -8,8 +8,8 @@ class AppConfig:
     app_name: str = "GeoVoto - Análise Eleitoral"
     app_icon: str = "🗳️"
     page_layout: str = "wide"
+    initial_sidebar_state: str = "collapsed"
     cache_ttl: int = 300  # 5 minutos
-    base_url: str = "http://localhost:8501"
 
 # @dataclass 
 # class DatabaseConfig:

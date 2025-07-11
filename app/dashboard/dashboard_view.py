@@ -5,13 +5,15 @@ from .data_loader import load_data
 from components.charts import *
 from components.filters import filtrar_por_candidato
 
-def build_dashboard(engine):
+@st.cache_data(show_spinner=False)
+def build_dashboard(_engine):
     """Constrói e exibe o dashboard principal."""
     with st.spinner("Carregando dados..."):
         if "Arquivos Carregados" not in st.session_state:
-            st.session_state["Arquivos Carregados"] = load_data(engine)
+            st.session_state["Arquivos Carregados"] = load_data(_engine)
 
         dataframes = st.session_state["Arquivos Carregados"]
+
     
     if not isinstance(dataframes, dict):
         st.error("Erro ao carregar os dados.")

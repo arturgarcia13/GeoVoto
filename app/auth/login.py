@@ -1,6 +1,7 @@
 import streamlit as st
 import uuid
 from database.queries import get_user_by_email, update_user_token, validate_token
+from streamlit_js_eval import get_page_location
 
 def login_scan(token: str) -> bool:
     if len(token) < 20:
@@ -47,8 +48,13 @@ def login_screen():
 
         success_login(token)
 
-@st.dialog("Aqui está seu token")
+@st.dialog("Aqui está seu link de acesso:")
 def success_login(token):
-    st.success("✅ Token criado com sucesso!")
-    st.write(f'/?token={token}')
-    st.balloons()
+    with st.spinner("Gerando link de acesso..."):
+        location = get_page_location()
+
+        if location:
+            base_url = f"{location['protocol']}//{location['host']}"
+            st.success("✅ Token criado com sucesso!")
+            st.write(f'{base_url}/?token={token}')
+            st.balloons()
