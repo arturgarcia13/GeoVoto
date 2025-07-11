@@ -5,7 +5,6 @@ from database.connection import get_engine
 from pathlib import Path
 from typing import Optional, Dict
 
-
 def get_user_by_email(email: str) -> Optional[Dict]:
     engine = get_engine()
     query = text("SELECT * FROM usuarios WHERE email = :email")
@@ -17,7 +16,6 @@ def get_user_by_email(email: str) -> Optional[Dict]:
         print(f"Erro ao buscar usuário por e-mail: {e}")
         return None
 
-
 def update_user_token(email: str, token: str) -> None:
     engine = get_engine()
     query = text("UPDATE usuarios SET token = :token WHERE email = :email")
@@ -26,7 +24,6 @@ def update_user_token(email: str, token: str) -> None:
             conn.execute(query, {"token": token, "email": email})
     except Exception as e:
         print(f"Erro ao atualizar token do usuário: {e}")
-
 
 def validate_token(token: str) -> Optional[Dict]:
     engine = get_engine()
@@ -38,7 +35,6 @@ def validate_token(token: str) -> Optional[Dict]:
     except Exception as e:
         print(f"Erro ao validar token: {e}")
         return None
-
 
 def create_user(nome: str, email: str, tipo: str, token: str) -> bool:
     """
@@ -57,7 +53,6 @@ def create_user(nome: str, email: str, tipo: str, token: str) -> bool:
     except Exception as e:
         print(f"Erro ao criar usuário: {e}")
         return False
-
 
 def read_sql_file(filename: str) -> str:
     path = Path("app/sql") / filename

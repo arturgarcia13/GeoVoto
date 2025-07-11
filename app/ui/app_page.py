@@ -1,101 +1,54 @@
 import streamlit as st
 
 def page_app():
-    # st.title("Mapa Político - Sistema de Visualização de Votos")
+    """Página de apresentação da aplicação"""
+
     st.markdown("""
-        # GeoVoto - Sistema de Visualização de Votos
-        Este projeto faz parte da disciplina **Interfaces de Programação de Aplicações** e tem como objetivo desenvolver um **sistema interativo de visualização espacial dos votos**, com foco em apoiar a criação de **modelos de campanha eleitoral** com base em dados geográficos.
+    # 🗳️ GeoVoto - Sistema de Análise Eleitoral
 
-        ## 📍 Objetivo Geral
+    ### 📊 Bem-vindo ao Sistema de Visualização de Dados Eleitorais
 
-        Desenvolver um aplicativo que permita **visualizar a distribuição de votos por região geográfica**, por meio de mapas interativos, apoiando a análise política e estratégias de campanha.
+    O **GeoVoto** é uma plataforma completa para análise e visualização de dados eleitorais, 
+    oferecendo insights poderosos através de:
 
-        ## 🎯 Objetivos Específicos
+    #### 🎯 Principais Funcionalidades
 
-        - Coletar e organizar dados eleitorais por região;
-        - Integrar os dados eleitorais com uma base geográfica;
-        - Desenvolver uma interface que permita filtrar e visualizar os dados de forma intuitiva;
-        - Gerar um modelo de campanha baseados em análise espacial;
-        - Documentar todas as etapas do desenvolvimento.
+    - **📈 Dashboard Interativo**: Visualize métricas em tempo real
+    - **🗺️ Análise Geográfica**: Mapas e dados geoespaciais  
+    - **📊 Gráficos Dinâmicos**: Charts interativos e personalizáveis
+    - **🔍 Filtros Avançados**: Segmente dados por múltiplos critérios
+    - **📱 Interface Responsiva**: Acesse de qualquer dispositivo
 
-        ---
+    #### 💡 Como Funciona
 
-        ## 🧱 Tecnologias e Ferramentas Utilizadas
+    1. **🔐 Faça Login**: Clique na aba "Login" para acessar
+    2. **📊 Explore o Dashboard**: Analise dados dos candidatos
+    3. **🗺️ Visualize Mapas**: Examine distribuição geográfica
+    4. **📈 Compare Resultados**: Use filtros para insights específicos
 
-        | Função | Ferramenta |
-        |--------|------------|
-        | Banco de dados espacial | PostgreSQL |
-        | Servidor de mapas | GeoServer |
-        | Visualização no frontend | Streamlit |
-        | Processamento geoespacial | Python + GeoPandas |
-        | Versionamento de código | Git + GitHub |
+    #### 🛡️ Segurança e Privacidade
 
-        ---
+    - ✅ Autenticação segura por email
+    - ✅ Dados criptografados
+    - ✅ Acesso controlado por perfil
+    - ✅ Logs de auditoria
 
-        ## 🔄 Fases do Projeto
+    ---
 
-        ### 1. Introdução
-        Apresentação do contexto, motivação e justificativa do sistema.
-
-        ### 2. Objetivos
-        Descrição dos objetivos geral e específicos.
-
-        ### 3. Desenvolvimento do Projeto
-        - **Fase I – Levantamento de dados e informações**
-        - **Fase II – Estruturação da Base de Dados**
-        - **Fase III – Estruturação da Base Espacial**
-        - **Fase IV – Estruturação das funções do sistema**
-        - **Fase V – Desenvolvimento do Sistema de Informações**
-        - **Fase VI – Manutenção e Treinamentos**
-
-        ### 4. Prazo
-        Duração estimada de 4 meses.
-
-        ### 5. Cronograma Físico
-
-        | Etapa | Mês 1 | Mês 2 | Mês 3 | Mês 4 |
-        |-------|-------|--------|--------|--------|
-        | Configuração do ambiente | ✅ |        |        |        |
-        | Criação do banco de dados |       | ✅     |        |        |
-        | Desenvolvimento do sistema |       |        | ✅     |        |
-        | Testes e entrega final     |       |        |        | ✅     |
-
-        ### 6. Orçamento
-        Não se aplica (projeto acadêmico).
-
-        ---
-
-        ## 📁 Estrutura de Pastas
-
-        ```
-        mapa-politico/
-        ┣ 📂 data/
-        ┃  ┣ 📂 raw/          ← Dados originais baixados
-        ┃  ┗ 📂 processed/    ← Dados limpos e unidos
-        ┣ 📂 notebooks/       ← Jupyter notebooks de exploração
-        ┣ 📂 scripts/         ← Scripts Python (ETL, carga, etc)
-        ┣ 📂 app/             ← Código futuro da aplicação
-        ┣ 📂 docs/            ← Relatórios mensais
-        ┣ 📜 .gitignore
-        ┗ 📜 requirements.txt
-        ```
-
-        ---
-
-        ## 👥 Equipe
-
-        - Artur Garcia
-        - Artur Saraiva
-        - Letícia Frota
-        - Lucas Lopes
-        - Iuri Sales
-
-        ---
-
-        ## 📌 Observações
-
-        - Este projeto é de natureza acadêmica e não possui fins comerciais.
-        - O foco é a integração de dados eleitorais com dados espaciais em um sistema acessível e visual.
-
-        ---
+    **👆 Clique na aba "Login" acima para começar!**
     """)
+
+    # Estatísticas mockadas
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric("📊 Dados Processados", "1.2M", "↗️ +15%")
+
+    with col2:
+        st.metric("🏛️ Municípios", "184", "✅ 100%")
+
+    with col3:
+        st.metric("🗳️ Seções Eleitorais", "5.2K", "📈 Ativo")
+
+    with col4:
+        st.metric("👥 Usuários Ativos", "342", "↗️ +8%")

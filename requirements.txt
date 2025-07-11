@@ -9,3 +9,4 @@ pyproj>=3.5
 matplotlib>=3.5.0
 plotly>=6.2.0
 streamlit_extras>=0.7.5
+sqlalchemy>=2.0.40
