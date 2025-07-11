@@ -36,6 +36,7 @@ def login_screen():
             return
 
         user = get_user_by_email(email)
+        st.write(user)
         if not user:
             st.error("Usuário não encontrado.")
             return

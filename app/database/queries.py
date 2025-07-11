@@ -11,7 +11,6 @@ def get_user_by_email(email: str) -> Optional[Dict]:
     try:
         with engine.connect() as conn:
             result = conn.execute(query, {"email": email}).mappings().fetchone()
-            print(result)
         return result
     except Exception as e:
         print(f"Erro ao buscar usuário por e-mail: {e}")
