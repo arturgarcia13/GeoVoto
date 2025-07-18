@@ -7,3 +7,10 @@ shapely>=2.0
 fiona>=1.9
 pyproj>=3.5
 matplotlib>=3.5.0
+plotly>=6.2.0
+streamlit_extras>=0.7.5
+sqlalchemy>=2.0.40
+psycopg2-binary==2.9.10
+streamlit_js_eval>=0.1.7
+folium>=0.20.0
+streamlit-folium>=0.25.0

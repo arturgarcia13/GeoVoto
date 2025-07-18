@@ -8,7 +8,7 @@ import geopandas as gpd
 import pydeck as pdk
 import time
 
-caminho_shp = "bairros_fortaleza/vw_Fortaleza_Bairros.shp"
+caminho_shp = "data/bairros_fortaleza/vw_Fortaleza_Bairros.shp"
 gdf_bairros = gpd.read_file(caminho_shp)
 
 col1,col2 = st.columns([9,2])
@@ -75,14 +75,6 @@ if mostrar_poligono:
         extruded=False,
     )
     camadas.append(camada_bairros)
-
-#Calculo dos centroides para correção do mapa (apagar no proximo commit)
-#gdf_temp = gdf_bairros.to_crs(epsg=3857)
-#centroids = gdf_temp.geometry.centroid
-#centroids = centroids.to_crs(epsg=4326)
-#st.write(f"lat média: {centroids.geometry.centroid.y.mean()}")
-#st.write(f"lon média: {centroids.geometry.centroid.x.mean()}")
-
 
 st.pydeck_chart(
     pdk.Deck(
