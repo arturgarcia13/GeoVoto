@@ -12,3 +12,4 @@ __pycache__/
 # data/*.shx
 myenv/
 .streamlit/
+.env
